@@ -16,6 +16,18 @@ dark
 light
 ```
 
+## Installation
+
+```sh
+# With mise
+mise use -g github:netmute/dol
+```
+
+```sh
+# With go
+go install github.com/netmute/dol@latest
+```
+
 ## Notes
 
 - The tool writes the `CSI ? 996 n` device status report (DSR) query to `/dev/tty`
