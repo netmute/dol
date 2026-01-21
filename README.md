@@ -1,34 +1,28 @@
 # dol - dark or light
 
-Query your terminal for its dark/light appearance.
+Detect dark/light mode on the CLI.
 
-## Usage
+## Why?
 
-```sh
-# System uses dark appearance.
-> dol
-dark
-```
+Modern operating systems can automatically switch between dark and light mode. However, many CLI tools assume a fixed dark or light background unless told otherwise. This is an attempt to make that less painful.
 
-```sh
-# System uses light appearance.
-> dol
-light
-```
+The output is intentionally minimal; it just prints `dark` or `light`. This allows you to construct command lines with it. Examples:  
+- `fzf --color=$(dol)`
+- `difft --background $(dol) file1 file2`
 
 ## Installation
 
+Either of these will work.
+
 ```sh
-# With mise
 mise use -g github:netmute/dol
 ```
 
 ```sh
-# With go
 go install github.com/netmute/dol@latest
 ```
 
-## Notes
+## How it works
 
 - dol writes a `CSI ? 996 n` device status report (DSR) query to `/dev/tty`
   and expects a reply like `CSI ? 997 ; 1 n` (dark) or `CSI ? 997 ; 2 n` (light).
