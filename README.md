@@ -31,4 +31,4 @@ go install github.com/netmute/dol@latest
 
 ## Terminal support
 
-See [this document](https://github.com/contour-terminal/contour/blob/master/docs/vt-extensions/color-palette-update-notifications.md#adoption-state) to verify if your terminal currently supports this feature.
+See [this document](https://github.com/contour-terminal/contour/blob/master/docs/vt-extensions/color-palette-update-notifications.md#adoption-state) to check whether your terminal currently supports this feature.
