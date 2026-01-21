@@ -33,6 +33,8 @@ homebrew_casks:
   - repository:
       owner: netmute
       name: homebrew-tap
+    homepage: "https://github.com/netmute/dol"
+    description: "Detect dark/light mode on the CLI"
 
 changelog:
   filters:
