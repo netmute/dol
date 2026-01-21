@@ -15,6 +15,10 @@ The output is intentionally minimal; it just prints `dark` or `light`. This allo
 Either of these will work.
 
 ```sh
+brew install netmute/tap/dol
+```
+
+```sh
 mise use -g github:netmute/dol
 ```
 
