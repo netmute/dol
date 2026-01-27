@@ -8,9 +8,16 @@ Detect dark/light mode on the CLI.
 
 Modern operating systems can automatically switch between dark and light mode. However, many CLI tools assume a fixed dark or light background unless told otherwise. This is an attempt to make that less painful.
 
-The output is intentionally minimal; it just prints `dark` or `light`. This allows you to construct command lines with it. Examples:  
-- `fzf --color=$(dol)`
-- `difft --background $(dol) file1 file2`
+The output is intentionally minimal; it just prints `dark` or `light`. This allows you to construct command lines with it.
+
+Examples:  
+```sh
+fzf --color=$(dol)
+```
+
+```sh
+difft --background $(dol) file1 file2
+```
 
 ## Installation
 
