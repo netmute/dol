@@ -2,6 +2,8 @@
 
 Detect dark/light mode on the CLI.
 
+<img width="1400" height="926" alt="dol-banner" src="https://github.com/user-attachments/assets/771f2bb7-37ac-4261-b9d5-da8df583f2c5" />
+
 ## Why?
 
 Modern operating systems can automatically switch between dark and light mode. However, many CLI tools assume a fixed dark or light background unless told otherwise. This is an attempt to make that less painful.
