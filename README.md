@@ -37,10 +37,8 @@ go install github.com/netmute/dol@latest
 
 ## How it works
 
-- dol writes a `CSI ? 996 n` device status report (DSR) query to `/dev/tty`
-  and expects a reply like `CSI ? 997 ; 1 n` (dark) or `CSI ? 997 ; 2 n` (light).
-- If your terminal does not support this query, dol prints an error and exits
-  with status 1.
+- dol writes a `CSI ? 996 n` device status report (DSR) query to the active terminal and expects a reply like `CSI ? 997 ; 1 n` (dark) or `CSI ? 997 ; 2 n` (light).
+- If your terminal does not support this query, dol prints an error and exits with status 1.
 
 ## Terminal support
 

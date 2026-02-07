@@ -3,12 +3,48 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"syscall"
 	"unsafe"
 )
 
 type termState struct {
 	termios syscall.Termios
+}
+
+type terminalSession struct {
+	tty      *os.File
+	oldState *termState
+}
+
+func openTerminal() (*terminalSession, error) {
+	tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+	if err != nil {
+		return nil, fmt.Errorf("unable to open /dev/tty: %w", err)
+	}
+
+	// Raw mode is required because canonical mode buffers input until newline.
+	oldState, err := makeRaw(int(tty.Fd()))
+	if err != nil {
+		_ = tty.Close()
+		return nil, fmt.Errorf("could not switch terminal input mode: %w", err)
+	}
+
+	return &terminalSession{tty: tty, oldState: oldState}, nil
+}
+
+func (t *terminalSession) Read(p []byte) (int, error) {
+	return t.tty.Read(p)
+}
+
+func (t *terminalSession) Write(p []byte) (int, error) {
+	return t.tty.Write(p)
+}
+
+func (t *terminalSession) Close() error {
+	_ = restore(int(t.tty.Fd()), t.oldState)
+	return t.tty.Close()
 }
 
 func makeRaw(fd int) (*termState, error) {

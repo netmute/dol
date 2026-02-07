@@ -21,21 +21,12 @@ func run() int {
 		return 0
 	}
 
-	tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+	tty, err := openTerminal()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "dol: unable to open /dev/tty:", err)
+		fmt.Fprintln(os.Stderr, "dol:", err)
 		return 1
 	}
 	defer tty.Close()
-
-	// Raw mode is required because canonical mode buffers input until newline.
-	oldState, err := makeRaw(int(tty.Fd()))
-	if err != nil {
-		// Terminal mode changes can fail in some environments; exit to avoid hanging reads.
-		fmt.Fprintln(os.Stderr, "dol: could not switch terminal input mode:", err)
-		return 1
-	}
-	defer restore(int(tty.Fd()), oldState)
 
 	// Query: CSI ? 996 n
 	fmt.Fprint(tty, "\x1b[?996n")
